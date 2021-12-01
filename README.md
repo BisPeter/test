@@ -95,3 +95,21 @@ Man kann die Pplikationen auf verschiedene Geräten testen.
 Die Applikation kann verteilt werden für verschiedene Gruppen (Für beta test zum Beispiel).
 Außerdem können zum Bispiel Analyse informationen abgerufen werden.
 
+
+
+
+## Cosmos Datenbank
+Azure Cosmos DB ist eine no sequel Datenbank.
+In azure ist es möglich ein API option zu Aussuchen unter anderem Core (SQL), Cassandra, PostgreSQL, Azure Cosmos DB API fpr MongoDB.
+Wenn es aud den Datenbank mit Entity framework zugegriffen wird, ist man gezwungen Core (SQL) zu wählen. Da werden einfacj json objekte gespeichert.
+Anstatt eine Datenbak Schema wird ein Container verwendet.
+Ein Beispiel dazu ist eine Menükarte mit Items drinnen.
+In eine Relationalen Datenbank würde man eine tabelle für Menükarten erstellen und eine Tabelle für die Menü Items.
+In Der cosmos datenbank kann man die Items direkt in der Menükarte speichern.
+
+Es wird wie folgt erstellt:
+```C#
+ modelBuilder.HasDefaultContainer("menucards"); 
+ modelBuilder.Entity<MenuCard>().OwnsMany(c => c.MenuItems); 
+ modelBuilder.Entity<MenuCard>().HasKey(c => c.MenuCardId);
+```
