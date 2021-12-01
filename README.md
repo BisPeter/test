@@ -113,3 +113,11 @@ Es wird wie folgt erstellt:
  modelBuilder.Entity<MenuCard>().OwnsMany(c => c.MenuItems); 
  modelBuilder.Entity<MenuCard>().HasKey(c => c.MenuCardId);
 ```
+
+## Active Directory
+An Azure kann man Active directorys erzeugen.
+In unseren Beispiel wurde ein B2C verwendet.
+Hier kann mann Applikationen registrieren, Identity Proveider registrieren (der Benutzer kann z.B. seine Amazon Account mitnehmen).
+* Es können user informationen gespeichert werden.
+* Man kann benutzer registrieren.
+* Man kann User Flows definieren.
