@@ -1,3 +1,5 @@
+
+
 ## Azure monitor
 Im preview unterstützt die standard format mit open Telemetry.
 Im großem sinne geht alles in diese richtung.
