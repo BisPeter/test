@@ -1,57 +1,56 @@
 
 
-## Azure monitor
-Im preview unterstützt die standard format mit open Telemetry.
-Im großem sinne geht alles in diese richtung.
+## Azure Monitor
+Be dem Azure Monitor wird bereits im Preview das Standardformat mit Open Telemetry unterstützt.
+Im Großen und Ganzen geht alles in die Richtung Open Telemetry.
 
-Im Azure Monitor werden Metric Daten verwendet (counts von .Net oder counts die man selber generiert).
-Außerdem werden Log Informationen auch verwendet.
+Im Azure Monitor werden Metric Daten verwendet (Counts von .Net oder Counts die man selber generiert).
+Außerdem werden auch Log Informationen verwendet.
 
-Diese beiden Daten kommen einerseids unsere Applikation kann aber auch von dem Betribsystem, Azure Services.
+Diese beiden Daten können einerseits aus unserer Applikation kommen, sie können aber auch von dem Betriebsystem oder von Azure Services kommen.
 
-Metriks und logs kann mann über Insights nutzen.
+Metrics und Logs kann mann über Insights nutzen:
 * Applikation		
 * Container
 * VM
 
-Diese informationen (Metriks und Logs) können auch Visualisiert werden.
+Diese Informationen (Metrics und Logs) können auch visualisiert werden:
+* In Dashboards
+* Über Power BI können sie analysiert werden
+* Im Workbook können diverse Charts definiert werden
 
-* Im Dashboards
-* Über Power BI können Analysiert werden.
-* im Workbook diverse Charts definieren.
-
-Die Daten aus Metriks und Logs können Analysiert werden.
+Die Daten aus Metrics und Logs können analysiert werden:
 * Mit Metric Analystics
 * Mit Log Analytics
 
-Es kann auf die Metriken und Logs reagiert werden.
-* Automathische skalierung anhand der Metrik
-* Alerts erstellen
+Es kann auf die Metrics und Logs reagiert werden:
+* Mit automatischer Skalierung anhand der Metric
+* Es können auch Alerts erstellen werden
 
-Es kann auch in diversen sachen integriert werden:
+Azure Monitor kann auch in diversen Sachen integriert werden:
 * Event Hubs
 * Logic Apps
-* Exportieren für analyse
+* Exportieren für Analyse
 	
 ## ALERTS
-Alerts basieren auf Notifikationen an bestimmten Bedingungen. 
-Alerts sind einheitlich über verschiedene Services wie Applikation insights, Log Analytics oder Azure Monitor. 
-Alerts können auf viele verschieden Metriken angebunden werden. 
-Es können HealthChecks sein, File system benutzung oder CPU Zeit und vieles mehr. 
-Z.b. wenn der CPU zeit größer als eine bestimmte wert aber es kann auch auf eine treshhold Sensitivity angebunden sein. 
-Es kann ausgesucht werden was es passieren soll wenn die kondition eintrifft. Es kann unter anderem ein SmS aber auch ein E-mail Sein. 
-Außerdem kann ein Action auch ausgeführt weden, ein  Logic app gestartet werden oder eine Webhook aufgerufen weden. 
+Alerts basieren auf Notifikationen, die durch bestimmte Bedingungen ausgelöst werden. 
+Alerts sind einheitlich in den verschiedenen Services wie Applikation Insights, Log Analytics oder Azure Monitor. 
+Alerts können an viele verschiedene Metriken angebunden werden. 
+Es können HealthChecks sein, File System Benutzung oder CPU Zeit und vieles mehr. 
+Ein Beispiel für das Anbinden an eine Metrik wäre, wenn die CPU Zeit größer ist als ein bestimmter Wert. 
+Es kann ausgesucht werden was passieren soll wenn die Bedingung eintrifft. Es kann unter anderem eine SmS aber auch eine E-mail verschickt werden. 
+Außerdem kann auch eine Action ausgeführt weden, eine Logic App gestartet werden oder ein Webhook aufgerufen weden. 
 
 ## Application Insights
-Beim Applikation Insights werden die bisher angesprochenen Loginformation (Metriks und Logs) gesammelt (können aber zuzätzlich auch Telemetry Daten genutzt werden).
+Bei Application Insights werden die bisher angesprochenen Loginformation (Metriks und Logs) gesammelt (es können aber zuzätzlich auch Telemetry Daten genutzt werden).
 
-Es ist möglich Application Insights in Azure bei eine Webapplikation zu Aktivieren.
-Je nach verwendeten Framework erfolgt es auch aber automatisch, ansonsten muss es im Apllikation explizit hingefügt/referenzieren werden.
+Es ist möglich Application Insights in Azure bei einer Webapplikation zu aktivieren.
+Je nach verwendetem Framework erfolgt es aber auch automatisch, ansonsten muss es in der Apllikation explizit hingzuefügt/referenziert werden.
 
-Es ist aber auch möglich diese Insights Client seitig zu verwenden.
-Es kann beispielweise in eine JavaScript library oder auch in eine WPF Applikation verwendet werden können.
-In eine WbApplikation muss es in der startup Klasse beim konfiguerieren der Services hingefügt werden.
-Die InstumentationsKey kann gleich beim hinfügen der appinsight oder in der Appsettings auch definiert werden.
+Es ist aber auch möglich, die Insights Client-seitig zu verwenden.
+Application Insights können beispielweise in einer JavaScript library oder auch in eine WPF Applikation verwendet werden.
+In einer WebApplikation muss es in der Startup Klasse beim Konfigurieren der Services hinzugefügt werden.
+Der InstumentationsKey kann gleich beim Hinzufügen der Appinsight oder auch in den Appsettings definiert werden.
 ```C#
  public void ConfigureServices(IServiceCollection services)
         {
@@ -65,49 +64,49 @@ Die InstumentationsKey kann gleich beim hinfügen der appinsight oder in der App
   /*--->*/  services.AddApplicationInsightsTelemetry(/*InstrumentationKey*/); /*<---*/
         }
 ```	
-Mit der Klasse ApplikationInsightsServiceOptions, kann die ApplikationInsightsTelemetry Konfigureiert werden.
+Mit der Klasse ApplikationInsightsServiceOptions, kann die ApplikationInsightsTelemetry konfiguriert werden.
 
-Man kann entweder ApplikationsInsightsTelemetry Objekte injecten und da Informationen reinschreiben oder die normale Logging verwenden.
+Man kann entweder ApplikationsInsightsTelemetry Objekte injecten und dort die Informationen reinschreiben oder das normale Logging verwenden.
 
 
-Applikation Insights kann bei eigenen Applikationen explizit aktiviert werden. (Z.b.: Server applikationen, WPF appllikationen, JavaScript Apllikationen)
-All diese Informationen werden zur Azure Applikation Insights geleitet um die in verschieden Arten nutzen zu können.
-Datenbank zugriffe werden zum Beispiel auch automatisch geloggt.
+Application Insights kann bei eigenen Applikationen explizit aktiviert werden. (Z.b.: Server Applikationen, WPF Appllikationen, JavaScript Apllikationen)
+All diese Informationen werden zur Azure Applikation Insights geleitet um diese in verschieden Arten nutzen zu können.
+Datenbankzugriffe werden zum Beispiel auch automatisch geloggt.
 
-Beim Apllikations Insights kann auch arificial Intelligence verwendet  werden.
-Beim Azure heißt es Cognitive Services.
-Diese Services behandeln zum Beispiel Text to speech, Speech to text, Bilderkennung sowie Anomaly Detection.
-Die Anomaly detection wird zum Beispiel auch verwendet um die applikation zu Monitoren.
-Zum Beispiel wenn der Applikation sich nicht regelmäßig verhält können Benachrichtigungen versendet werden.
+Bei Apllications Insights kann auch künstliche Intelligenz verwendet werden.
+Bei Azure heißt es Cognitive Services.
+Diese Services behandeln zum Beispiel Text to Speech, Speech to Text, Bilderkennung sowie Anomaly Detection.
+Die Anomaly Detection wird zum Beispiel auch verwendet um die Applikationen zu monitoren.
+Zum Beispiel wenn sich die Applikation nicht regelmäßig verhält, können Benachrichtigungen versendet werden.
 
-## Applikation Map
+## Application Map
 
-Eine Applikation map stellt dar welche Services mit was kommunizieren.
-Es hilft eine bessere überblick zu geben wo, bei welchen Applikation Problemem gegeben hat.
-Es kann aber beim finden der Urschen der fehler helfen.
-Es kann aber auch abgelesen werden welche Requests die langsamsten waren.
-Es wird zum beispiel angezeigt wie viele Calls zu eine Service getetigt wurden und wie viel Prozent dieser Calls fehlerhaft war.
+Eine Application Map stellt dar, welche Services mit was kommunizieren.
+Es hilft einen besseren Überblick zu geben wo, bei welchen Applikationen es Probleme gegeben hat.
+Es kann aber beim Finden der Ursachen der Fehler helfen.
+Es kann aber auch abgelesen werden, welche Requests die Langsamsten waren.
+Es wird zum Beispiel angezeigt, wie viele Calls zu einem Service getätigt wurden und wie viel Prozent dieser Calls fehlerhaft waren.
 
 
 ## Visual Studio App Center
 
-Man kann Client seitige Applikationen registrieren.
-Es stellt eine Build environment zu verfügung.
-Man kann die Pplikationen auf verschiedene Geräten testen.
-Die Applikation kann verteilt werden für verschiedene Gruppen (Für beta test zum Beispiel).
-Außerdem können zum Bispiel Analyse informationen abgerufen werden.
+Man kann Client-seitige Applikationen registrieren.
+Es stellt ein Build Environment zu Verfügung.
+Man kann die Applikationen auf verschiedenen Geräten testen.
+Die Applikation kann an verschiedene Gruppen verteilt werden (Für beta test zum Beispiel).
+Außerdem können zum Beispiel Analyseinformationen abgerufen werden.
 
 
 
 
 ## Cosmos Datenbank
 Azure Cosmos DB ist eine no sequel Datenbank.
-In azure ist es möglich ein API option zu Aussuchen unter anderem Core (SQL), Cassandra, PostgreSQL, Azure Cosmos DB API fpr MongoDB.
-Wenn es aud den Datenbank mit Entity framework zugegriffen wird, ist man gezwungen Core (SQL) zu wählen. Da werden einfacj json objekte gespeichert.
-Anstatt eine Datenbak Schema wird ein Container verwendet.
-Ein Beispiel dazu ist eine Menükarte mit Items drinnen.
-In eine Relationalen Datenbank würde man eine tabelle für Menükarten erstellen und eine Tabelle für die Menü Items.
-In Der cosmos datenbank kann man die Items direkt in der Menükarte speichern.
+In Azure ist es möglich ein API Option auszusuchen. Unter anderem Core (SQL), Cassandra, PostgreSQL, Azure Cosmos DB API für MongoDB.
+Wenn auf die Datenbank mit Entity Framework zugegriffen wird, ist man gezwungen Core (SQL) zu wählen. Da werden einfach json Objekte gespeichert.
+Anstatt eines Datenbank Schemas wird ein Container verwendet.
+Ein Beispiel dazu ist eine Menükarte mit Items darin.
+In einer relationalen Datenbank würde man eine Tabelle für Menükarten erstellen und eine Tabelle für die Menü Items.
+In der Cosmos Datenbank kann man die Items direkt in der Menükarte speichern.
 
 Es wird wie folgt erstellt:
 ```C#
@@ -117,9 +116,9 @@ Es wird wie folgt erstellt:
 ```
 
 ## Active Directory
-An Azure kann man Active directorys erzeugen.
-In unseren Beispiel wurde ein B2C verwendet.
-Hier kann mann Applikationen registrieren, Identity Proveider registrieren (der Benutzer kann z.B. seine Amazon Account mitnehmen).
-* Es können user informationen gespeichert werden.
-* Man kann benutzer registrieren.
+In Azure kann man Active Directorys erzeugen.
+In unserem Beispiel wurde ein B2C verwendet.
+Hier kann mann Applikationen registrieren und Identity Provider registrieren (der Benutzer kann z.B. seinen Amazon Account mitnehmen).
+* Es können User Informationen gespeichert werden.
+* Man kann Benutzer registrieren.
 * Man kann User Flows definieren.
